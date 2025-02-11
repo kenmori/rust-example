@@ -47,12 +47,12 @@ fn main() {
         let right = eval_token(tokens[2], &memories);
 
         let result = eval_expression(left, tokens[1], right);
-        print_output(result);
+        print_value(result);
         prev_result = result;
     }
 }
 
-fn eval_token(token: &str, memories: &Vec<f64>) -> f64 {
+fn eval_token(token: &str, memories: &[f64]) -> f64 {
     if token.starts_with("mem") {
         let slot_index: usize = token[3..].parse().unwrap();
         memories[slot_index]
@@ -61,10 +61,10 @@ fn eval_token(token: &str, memories: &Vec<f64>) -> f64 {
     }
 }
 
-fn add_and_print_memory(memories: &mut Vec<f64>, token: &str, prev_result: f64) {
+fn add_and_print_memory(memories: &mut [f64], token: &str, prev_result: f64) {
     let slot_index: usize = token[3..token.len() - 1].parse().unwrap();
     memories[slot_index] += prev_result;
-    print_output(memories[slot_index]);
+    print_value(memories[slot_index]);
 }
 
 fn eval_expression(left: f64, operator: &str, right: f64) -> f64 {
@@ -78,6 +78,6 @@ fn eval_expression(left: f64, operator: &str, right: f64) -> f64 {
         }
     }
 }
-fn print_output(result: f64) {
+fn print_value(result: f64) {
     println!(" => {}", result);
 }
