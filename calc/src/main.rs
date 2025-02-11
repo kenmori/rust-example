@@ -1,14 +1,6 @@
 use std::io::stdin;
 
 fn main() {
-    // let some_values: i32 = {
-    //     let mut line = String::new();
-    //     std::io::stdin().read_line(&mut line).unwrap();
-    //     line.trim().parse().unwrap()
-    // };
-    // println!("{}", some_values);
-
-    // let mut memory: f64 = 0.0;
     let mut memories: Vec<f64> = vec![0.0; 10];
 
     let mut prev_result: f64 = 0.0;
@@ -30,17 +22,6 @@ fn main() {
             add_and_print_memory(&mut memories, tokens[0], -prev_result);
             continue;
         }
-
-        // if tokens[0] == "mem+" {
-        //     add_and_print_memory(&mut memory, prev_result);
-        //     continue;
-        // } else if tokens[0] == "mem-" {
-        //     add_and_print_memory(&mut memory, -prev_result);
-        //     continue;
-        // }
-
-        // let left: f64 = tokens[0].parse().unwrap();
-        // let right: f64 = tokens[2].parse().unwrap();
 
         let left = eval_token(tokens[0], &memories);
 
